@@ -374,3 +374,20 @@ class Indicators:
             return pd.DataFrame()
 
         return response_to_dataframe(self._gc.get(endpoint))
+
+    def ssr(self) -> pd.DataFrame:
+        """
+        The Stablecoin Supply Ratio (SSR) is the ratio between Bitcoin supply and the supply of stablecoins denoted 
+        in BTC, or: Bitcoin Marketcap / Stablecoin Marketcap. We use the following stablecoins for the supply: USDT, 
+        TUSD, USDC, PAX, GUSD, DAI, SAI, and BUSD. When the SSR is low, the current stablecoin supply has more "buying power" 
+        to purchase BTC. It serves as a proxy for the supply/demand mechanics between BTC and USD. For more information see 
+        this article (https://medium.com/@glassnode/stablecoins-buying-power-over-bitcoin-3475c0d8779d). 
+
+        `View in Studio <https://studio.glassnode.com/metrics?a=BTC&m=indicators.Ssr>`_
+        """
+        endpoint = '/v1/metrics/indicators/ssr'
+        if not is_supported_by_endpoint(self._gc, endpoint):
+            return pd.DataFrame()
+
+        return response_to_dataframe(self._gc.get(endpoint))
+
